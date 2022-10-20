@@ -5,13 +5,13 @@ import axios from "axios";
 function CallPreset(CameraIp: string, preset: number) {
     const data=  new FormData();
     data.append('szCmd',JSON.stringify({"SysCtrl": {"PtzCtrl": {"nChanel": 0, "szPtzCmd": "preset_call", "byValue": preset}}}))
-    axios.post(`http://${CameraIp}/ajaxcom}`, data,{})
+    axios.post(`http://${CameraIp}/ajaxcom`, data,{})
 }
 
 function SetPreset(CameraIp: string, preset: number) {
     const data=  new FormData();
     data.append('szCmd',JSON.stringify({"SysCtrl": {"PtzCtrl": {"nChanel": 0, "szPtzCmd": "preset_set", "byValue": preset}}}))
-    axios.post(`http://${CameraIp}/ajaxcom}`, data,{})
+    axios.post(`http://${CameraIp}/ajaxcom`, data,{})
 }
 
 export const Repeater: React.FC<{ amount: number, items: (i: number) => React.ReactElement }> = (props) => {
