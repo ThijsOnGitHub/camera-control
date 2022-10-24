@@ -27,7 +27,7 @@ jobs:
           # Artifact name
           name: Windows Application # optional, default is artifact
           # A file, directory or wildcard pattern that describes what to upload
-          path: ${{ env.FOLDER }}/out/
+          path: ${{ env.FOLDER }}/out/make/zip/win32/x64/camera-control-win32-x64-1.0.0
           # The desired behavior if no files are found using the provided path.
 
         
