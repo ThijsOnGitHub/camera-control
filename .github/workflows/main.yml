@@ -5,7 +5,7 @@ on:
     branches: 
       - main
 env:
-  FOLDER: site
+  FOLDER: Monday
 
 jobs: 
   deploy-application:
