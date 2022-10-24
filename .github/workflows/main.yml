@@ -5,7 +5,7 @@ on:
     branches: 
       - main
 env:
-  FOLDER: Site
+  FOLDER: applicatie
 
 jobs: 
   deploy-application:
@@ -17,11 +17,18 @@ jobs:
         if: false
         uses: actions/setup-node@v3.5.1
       - name: Generate executable
-        working-directory: ${{ env.FOLDER}}
+        working-directory: ${{ env.FOLDER }}
         run: |
-          ls
           npm install
-          npm run
-          
+          npm run build
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          # Artifact name
+          name: Windows Application # optional, default is artifact
+          # A file, directory or wildcard pattern that describes what to upload
+          path: ${{ env.FOLDER }}/out/
+          # The desired behavior if no files are found using the provided path.
+
         
         
