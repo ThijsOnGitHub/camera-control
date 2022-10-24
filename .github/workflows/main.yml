@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.5.0
       - name: Setup Node.js environment
+        if: false
         uses: actions/setup-node@v3.5.1
       - name: Generate executable
         run: |
