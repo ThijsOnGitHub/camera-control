@@ -6,13 +6,19 @@ import {LongPressCallback} from "../hooks/LongPressCallback";
 function CallPreset(CameraIp: string, preset: number) {
     const data=  new FormData();
     data.append('szCmd',JSON.stringify({"SysCtrl": {"PtzCtrl": {"nChanel": 0, "szPtzCmd": "preset_call", "byValue": preset}}}))
-    axios.post(`http://${CameraIp}/ajaxcom`, data,{})
+    axios.post(`http://${CameraIp}/ajaxcom`, data,{
+        headers:{
+            "Access-Control-Allow-Private-Network": true
+        }
+    })
 }
 
 function SetPreset(CameraIp: string, preset: number) {
     const data=  new FormData();
     data.append('szCmd',JSON.stringify({"SysCtrl": {"PtzCtrl": {"nChanel": 0, "szPtzCmd": "preset_set", "byValue": preset}}}))
-    axios.post(`http://${CameraIp}/ajaxcom`, data,{})
+    axios.post(`http://${CameraIp}/ajaxcom`, data,{headers:{
+            "Access-Control-Allow-Private-Network": true
+        }})
 }
 
 export const Repeater: React.FC<{ amount: number, items: (i: number) => React.ReactElement }> = (props) => {
@@ -27,7 +33,6 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props)
     },500)
     return <div className={'button-group'}>
         <div>{props.naam}</div>
-        <div>  </div>
         <div className={'button-col'}>
             <div className={'button-row'}>
                 <div>Call  </div>
