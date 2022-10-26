@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {LongPressCallback} from "../hooks/LongPressCallback";
 
 
 function CallPreset(CameraIp: string, preset: number) {
@@ -20,13 +21,18 @@ export const Repeater: React.FC<{ amount: number, items: (i: number) => React.Re
 }
 
 export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props) => {
+    const longPress = LongPressCallback((button)=>{
+        console.log("Long Press")
+        SetPreset(props.ip, parseInt(button.name))
+    },500)
     return <div className={'button-group'}>
         <div>{props.naam}</div>
+        <div>  </div>
         <div className={'button-col'}>
             <div className={'button-row'}>
                 <div>Call  </div>
                 <Repeater items={(i) =>
-                    <button className={'button button-goto'} onClick={event => CallPreset(props.ip, i)} key={i + 1}>
+                    <button  className={'button button-goto'} name={i+''} onClick={event => CallPreset(props.ip, i)} key={i + 1}>
                         <div>{i + 1}</div>
                     </button>
                 } amount={props.amount}/>
@@ -34,8 +40,8 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props)
             <div className={'button-row'}>
                 <div>Set  </div>
                 <Repeater items={(i) =>
-                    <button className={'button button-set'} onMouseDown={event => SetPreset(props.ip, i)} key={i + 1}>
-                        <div>{i + 1}</div>
+                    <button className={'button button-set'} onClick={()=> SetPreset(props.ip,i)} name={i+''} key={i + 1}>
+                        {i + 1}
                     </button>
                 } amount={props.amount}/>
             </div>
