@@ -28,6 +28,8 @@ jobs:
         with:
           # GitHub secret token
           repo_token: ${{ github.token }}
+          # Git tag (for automatic releases)
+          automatic_release_tag: latest
           # Assets to upload to the release
           files: ${{ env.FOLDER }}/out/make/zip/win32/x64/camera-control-win32-x64-1.0.0.zip
 
