@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && xcopy /Y /E /H /C /I build ..\\applicatie\\site",
+    "build": "react-scripts build",
+    "buildforapp": "react-scripts build && xcopy /Y /E /H /C /I build ..\\applicatie\\site",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
