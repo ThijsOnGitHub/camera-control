@@ -34,7 +34,7 @@ jobs:
           # Assets to upload to the release
           files: |
             ${{ env.FOLDER }}/out/make/zip/win32/x64/camera-control-win32-x64-1.0.0.zip
-            ${{ env.FOLDER }}/out/camera-control-win32-x64-1.0.0/camera-control.exe
+            ${{ env.FOLDER }}/out/camera-control-win32-x64/camera-control.exe
           
 
 
