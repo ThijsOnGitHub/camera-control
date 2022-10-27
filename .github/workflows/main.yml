@@ -19,6 +19,7 @@ jobs:
         # uses: MontyD/package-json-updated-action@c2038ab106288f75eab2c0c75fff04617d886963
         uses: MontyD/package-json-updated-action@1.0.1
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
           # The path to the package.json
           path: ${{ env.APP_FOLDER }}/package.json
       - name: Setup Node.js environment
