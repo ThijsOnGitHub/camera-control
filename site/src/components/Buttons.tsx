@@ -6,24 +6,22 @@ import {LongPressCallback} from "../hooks/LongPressCallback";
 function CallPreset(CameraIp: string, preset: number) {
     const data=  new FormData();
     data.append('szCmd',JSON.stringify({"SysCtrl": {"PtzCtrl": {"nChanel": 0, "szPtzCmd": "preset_call", "byValue": preset}}}))
-    axios.post(`http://${CameraIp}/ajaxcom`, data,{
-        headers:{
-            "Access-Control-Allow-Private-Network": true
-        }
-    })
+    axios.post(`http://${CameraIp}/ajaxcom`, data)
 }
 
 function SetPreset(CameraIp: string, preset: number) {
     const data=  new FormData();
     data.append('szCmd',JSON.stringify({"SysCtrl": {"PtzCtrl": {"nChanel": 0, "szPtzCmd": "preset_set", "byValue": preset}}}))
-    axios.post(`http://${CameraIp}/ajaxcom`, data,{headers:{
-            "Access-Control-Allow-Private-Network": true
-        }})
+    axios.post(`http://${CameraIp}/ajaxcom`, data)
 }
 
 export const Repeater: React.FC<{ amount: number, items: (i: number) => React.ReactElement }> = (props) => {
     return <>{[...new Array(props.amount)].map((_, i) => props.items(i))}
     </>
+}
+
+function test(){
+    window.postMessage("test")
 }
 
 export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props) => {
@@ -51,5 +49,6 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props)
                 } amount={props.amount}/>
             </div>
         </div>
+        <button onClick={test}> test</button>
     </div>
 }
