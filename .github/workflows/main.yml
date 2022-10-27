@@ -23,6 +23,8 @@ jobs:
           npm install
           npm run build
       - name: Generate executable
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         working-directory: ${{ env.APP_FOLDER }}
         run: |
           npm install
