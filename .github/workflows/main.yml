@@ -14,17 +14,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.5.0
-      - uses: copapow/version-bump-package@v1
-        id: bump
+      - name: Increment Package.json Version
+        # You may pin to the exact commit or the version.
+        # uses: copapow/version-bump-package@d6f4d71c1b2a83b85a3d3404751896c8a048e650
+        uses: copapow/version-bump-package@v
         with:
-          major_label: version-major # optional - default = major
-          minor_label: version-minor # optional - default = minor
-          patch_label: version-patch # optional - default = patch
-          default_branch: main       # optional = default = master
-          github_token: ${{ secrets.GITHUB_TOKEN }} # required
+          # github token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Node.js environment
         if: false
         uses: actions/setup-node@v3.5.1
+      - name: Bumb package version
+        working-directory: ${{ env.APP_FOLDER }}
+        run: |
+          npm version patch
       - name: Generate site
         working-directory: ${{ env.SITE_FOLDER }}
         run: |
