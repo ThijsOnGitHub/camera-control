@@ -28,6 +28,7 @@ jobs:
         working-directory: ${{ env.APP_FOLDER }}
         run: |
           npm install
+          npm run build
           npm run publish
 
 
