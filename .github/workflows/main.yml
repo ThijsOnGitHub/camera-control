@@ -20,22 +20,7 @@ jobs:
         working-directory: ${{ env.FOLDER }}
         run: |
           npm install
-          npm run make
-      - name: Automatic Releases
-        # You may pin to the exact commit or the version.
-        # uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0
-        uses: marvinpinto/action-automatic-releases@v1.2.1
-        with:
-          # GitHub secret token
-          repo_token: ${{ github.token }}
-          # Git tag (for automatic releases)
-          automatic_release_tag: latest
-          rerelease: false
-          # Assets to upload to the release
-          files: |
-            ${{ env.FOLDER }}/out/make/zip/win32/x64/camera-control-win32-x64-1.0.0.zip
-            ${{ env.FOLDER }}/out/camera-control-win32-x64/camera-control.exe
-          
+          npm run publish
 
 
 
