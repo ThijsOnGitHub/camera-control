@@ -14,12 +14,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.5.0
-      - name: Package Version Updated
-        uses: MontyD/package-json-updated-action@1.0.1
+      - uses: copapow/version-bump-package@v1
+        id: bump
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # The path to the package.json
-          path: ${{ env.APP_FOLDER }}/package.json
+          major_label: version-major # optional - default = major
+          minor_label: version-minor # optional - default = minor
+          patch_label: version-patch # optional - default = patch
+          default_branch: main       # optional = default = master
+          github_token: ${{ secrets.GITHUB_TOKEN }} # required
       - name: Setup Node.js environment
         if: false
         uses: actions/setup-node@v3.5.1
