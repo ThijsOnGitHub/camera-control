@@ -5,7 +5,8 @@ on:
     branches: 
       - main
 env:
-  FOLDER: applicatie
+  APP_FOLDER: applicatie
+  SITE_FOLDER: site
 
 jobs: 
   deploy-application:
@@ -16,8 +17,13 @@ jobs:
       - name: Setup Node.js environment
         if: false
         uses: actions/setup-node@v3.5.1
+      - name: Generate site
+        working-directory: ${{ env.SITE_FOLDER }}
+        run: |
+          npm install
+          npm run build
       - name: Generate executable
-        working-directory: ${{ env.FOLDER }}
+        working-directory: ${{ env.APP_FOLDER }}
         run: |
           npm install
           npm run publish
