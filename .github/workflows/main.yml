@@ -21,7 +21,9 @@ jobs:
         working-directory: ${{ env.APP_FOLDER }}
         run: |
           npm version patch
-          git commit "Update patch version"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Add changes" -a
           git push
       - name: Generate site
         working-directory: ${{ env.SITE_FOLDER }}
