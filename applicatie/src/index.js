@@ -5,9 +5,7 @@ var path = require('path');
 require('update-electron-app')({
     repo: 'ThijsOnGitHup/camera-control'
 });
-electron_1.app.commandLine.appendSwitch('disable-features', 'BlockInsecurePrivateNetworkRequests');
-electron_1.app.commandLine.appendSwitch('disable-features', 'PrivateNetworkAccessSendPreflights');
-electron_1.app.commandLine.appendSwitch('disable-features', 'PrivateNetworkAccessRespectPreflightResults');
+electron_1.app.commandLine.appendSwitch('enable-features', 'InsecurePrivateNetworkRequestsAllowed');
 var createWindow = function () {
     // Create the browser window.
     var mainWindow = new electron_1.BrowserWindow({

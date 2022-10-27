@@ -4,9 +4,7 @@ require('update-electron-app')({
   repo: 'ThijsOnGitHup/camera-control'
 })
 
-app.commandLine.appendSwitch('disable-features', 'BlockInsecurePrivateNetworkRequests')
-app.commandLine.appendSwitch('disable-features', 'PrivateNetworkAccessSendPreflights')
-app.commandLine.appendSwitch('disable-features', 'PrivateNetworkAccessRespectPreflightResults')
+app.commandLine.appendSwitch('enable-features', 'InsecurePrivateNetworkRequestsAllowed')
 const createWindow = () => {
 
   // Create the browser window.
