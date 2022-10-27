@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.0.1
+        uses: actions/checkout@v3.1.0
       - name: Setup Node.js environment
         if: false
         uses: actions/setup-node@v3.5.1
