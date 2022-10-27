@@ -17,12 +17,6 @@ jobs:
       - name: Setup Node.js environment
         if: false
         uses: actions/setup-node@v3.5.1
-      - name: Update version in package.json
-        # You may pin to the exact commit or the version.
-        # uses: maks-stupak/gh-action-bump-version@68745b36f06428d175b5aec775a41540ac1788aa
-        uses: maks-stupak/gh-action-bump-version@v7.1.5
-        with:
-          PACKAGEJSON_DIR: ${{env.APP_FOLDER}}
       - name: Generate site
         working-directory: ${{ env.SITE_FOLDER }}
         run: |
