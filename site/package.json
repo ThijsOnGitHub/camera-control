@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && DEL /S /Q ..\\applicatie\\site && move build ../applicatie/site",
+    "build": "react-scripts build && DEL /S /Q  ..\\applicatie\\site && move build ../applicatie/site",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

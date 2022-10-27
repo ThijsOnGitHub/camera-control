@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron";
 const path = require('path');
 require('update-electron-app')({
-  repo: 'ThijsOnGitHup/camera-control',
+  repo: 'ThijsOnGitHup/camera-control'
 })
 
 app.commandLine.appendSwitch('disable-features', 'BlockInsecurePrivateNetworkRequests')

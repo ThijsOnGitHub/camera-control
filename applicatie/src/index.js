@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var path = require('path');
 require('update-electron-app')({
-    repo: 'ThijsOnGitHup/camera-control',
+    repo: 'ThijsOnGitHup/camera-control'
 });
 electron_1.app.commandLine.appendSwitch('disable-features', 'BlockInsecurePrivateNetworkRequests');
 electron_1.app.commandLine.appendSwitch('disable-features', 'PrivateNetworkAccessSendPreflights');
