@@ -21,6 +21,8 @@ jobs:
         working-directory: ${{ env.APP_FOLDER }}
         run: |
           npm version patch
+          git commit "Update patch version"
+          git push
       - name: Generate site
         working-directory: ${{ env.SITE_FOLDER }}
         run: |
