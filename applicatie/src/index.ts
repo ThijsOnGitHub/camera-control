@@ -1,8 +1,6 @@
 import { app, BrowserWindow } from "electron";
 const path = require('path');
-require('update-electron-app')({
-  repo: 'ThijsOnGitHup/camera-control'
-})
+require('update-electron-app')()
 if (require('electron-squirrel-startup')) app.quit();
 app.commandLine.appendSwitch('enable-features', 'InsecurePrivateNetworkRequestsAllowed')
 const createWindow = () => {
