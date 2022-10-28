@@ -49,6 +49,5 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props)
                 } amount={props.amount}/>
             </div>
         </div>
-        <button onClick={test}> test</button>
     </div>
 }

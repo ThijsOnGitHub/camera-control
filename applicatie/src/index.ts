@@ -18,15 +18,6 @@ const createWindow = () => {
   //mainWindow.loadURL("https://camera-control-ijwg.vercel.app/")
   mainWindow.loadFile(`${path.join(__dirname, "../site/index.html")}`)
 
-  // listen to postMessage
-    mainWindow.webContents.on('did-finish-load', () => {
-        mainWindow.webContents.executeJavaScript(`window.addEventListener('message', event => {
-            console.log(event.data)
-        })`)
-    })
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

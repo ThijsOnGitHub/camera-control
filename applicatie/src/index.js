@@ -16,12 +16,6 @@ var createWindow = function () {
     // and load the index.html of the app.
     //mainWindow.loadURL("https://camera-control-ijwg.vercel.app/")
     mainWindow.loadFile("".concat(path.join(__dirname, "../site/index.html")));
-    // listen to postMessage
-    mainWindow.webContents.on('did-finish-load', function () {
-        mainWindow.webContents.executeJavaScript("window.addEventListener('message', event => {\n            console.log(event.data)\n        })");
-    });
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools();
 };
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
