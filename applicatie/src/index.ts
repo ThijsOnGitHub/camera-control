@@ -3,7 +3,7 @@ const path = require('path');
 require('update-electron-app')({
   repo: 'ThijsOnGitHup/camera-control'
 })
-
+if (require('electron-squirrel-startup')) app.quit();
 app.commandLine.appendSwitch('enable-features', 'InsecurePrivateNetworkRequestsAllowed')
 const createWindow = () => {
 

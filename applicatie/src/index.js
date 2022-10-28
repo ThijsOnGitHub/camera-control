@@ -5,6 +5,8 @@ var path = require('path');
 require('update-electron-app')({
     repo: 'ThijsOnGitHup/camera-control'
 });
+if (require('electron-squirrel-startup'))
+    electron_1.app.quit();
 electron_1.app.commandLine.appendSwitch('enable-features', 'InsecurePrivateNetworkRequestsAllowed');
 var createWindow = function () {
     // Create the browser window.
