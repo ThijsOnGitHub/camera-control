@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {LongPressCallback} from "../hooks/LongPressCallback";
+import {Stream} from "./Stream";
 
 
 function CallPreset(CameraIp: string, preset: number) {
@@ -25,6 +26,7 @@ function test(){
 }
 
 export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props) => {
+    const videoStream = React.useRef<typeof Stream>(null)
     const longPress = LongPressCallback((button)=>{
         console.log("Long Press")
         SetPreset(props.ip, parseInt(button.name))
@@ -43,11 +45,14 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number}> = (props)
             <div className={'button-row'}>
                 <div>Set  </div>
                 <Repeater items={(i) =>
-                    <button className={'button button-set'} onClick={()=> SetPreset(props.ip,i)} name={i+''} key={i + 1}>
+                    <button className={'button button-set'} onClick={()=> {
+                        SetPreset(props.ip, i)
+                    }} name={i+''} key={i + 1}>
                         {i + 1}
                     </button>
                 } amount={props.amount}/>
             </div>
         </div>
+        <Stream  ip={props.ip}/>
     </div>
 }

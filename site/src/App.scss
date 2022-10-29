@@ -85,4 +85,14 @@
     border: 2px #414141 solid;
     width: fit-content;
   }
+  &-video-container{
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  &-video{
+    height: 100px;
+    aspect-ratio: 16/9;
+  }
 }
