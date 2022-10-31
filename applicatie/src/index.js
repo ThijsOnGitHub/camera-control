@@ -2,9 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var path = require('path');
-require('update-electron-app')({
-    repo: 'ThijsOnGitHup/camera-control'
-});
+require('update-electron-app')();
 if (require('electron-squirrel-startup'))
     electron_1.app.quit();
 electron_1.app.commandLine.appendSwitch('enable-features', 'InsecurePrivateNetworkRequestsAllowed');
@@ -18,6 +16,7 @@ var createWindow = function () {
     // and load the index.html of the app.
     //mainWindow.loadURL("https://camera-control-ijwg.vercel.app/")
     mainWindow.loadFile("".concat(path.join(__dirname, "../site/index.html")));
+    require('./server/server');
 };
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
