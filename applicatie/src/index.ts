@@ -15,6 +15,7 @@ const createWindow = () => {
    // and load the index.html of the app.
   //mainWindow.loadURL("https://camera-control-ijwg.vercel.app/")
   mainWindow.loadFile(`${path.join(__dirname, "../site/index.html")}`)
+  //mainWindow.loadURL("http://localhost:3000")
   require('./server/server');
 
 

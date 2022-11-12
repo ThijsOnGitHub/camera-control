@@ -1,17 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.scss';
-import {Buttons} from "./components/Buttons";
-import {Stream} from "./components/Stream";
+import {Buttons, EventData} from "./components/Buttons";
+
 
 function App() {
+    const [lockLive,setLockLive] = React.useState(true)
+    const [amountOfPresets,setAmountOfPresets] = React.useState(10)
+    const [liveInput, setLiveInput] = React.useState(0)
+    const [previewInput, setPreviewInput] = React.useState(0)
+    useEffect(()=>{
+        const websocket = new WebSocket(`ws://localhost:4123/atem-events`)
+        websocket.onmessage = (event)=>{
+            const data = JSON.parse(event.data) as EventData
+            if(data.event === "stateChanged"){
+                if(data.data.video.mixEffects[0]){
+                    setLiveInput(data.data.video.mixEffects[0]?.programInput)
+                    setPreviewInput(data.data.video.mixEffects[0]?.previewInput)
+                }
+            }
+        }
+    },[])
+
   return (
     <div className="App">
-        <Buttons ip={"192.168.1.161"} naam={"Cam 1"} amount={10}></Buttons>
-        <Buttons ip={"192.168.1.162"} naam={"Cam 2"} amount={10}></Buttons>
-        <Buttons ip={"192.168.1.163"} naam={"Cam 3"} amount={10}></Buttons>
-        <Buttons ip={"192.168.1.164"} naam={"Cam 4"} amount={10}></Buttons>
-        <Buttons ip={"192.168.1.165"} naam={"Cam 5"} amount={10}></Buttons>
+        {[
+            {ip: "192.168.1.161", naam: "Cam 1", inputNumber: 5},
+            {ip: "192.168.1.162", naam: "Cam 2", inputNumber: 6},
+            {ip: "192.168.1.163", naam: "Cam 3", inputNumber: 7},
+            {ip: "192.168.1.164", naam: "Cam 4", inputNumber: 8},
+            {ip: "192.168.1.165", naam: "Cam 5", inputNumber: 1},
+
+        ].map((item) => <Buttons {...item} amount={amountOfPresets || 10} lockLive={lockLive} liveInput={liveInput} previewInput={previewInput}/>)}
+        <div className={'button-group'}>
+            <label>Lock Live <input type={"checkbox"} checked={lockLive} onChange={event => setLockLive(event.currentTarget.checked)}/></label>
+            <label>Aantal presets <input type={"number"} value={amountOfPresets} onChange={event => setAmountOfPresets(event.currentTarget.valueAsNumber)}/></label>
+        </div>
     </div>
   );
 }

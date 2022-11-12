@@ -1,11 +1,28 @@
-var express = require('express');
-var app = express();
-var _a = require('rtsp-relay')(app), proxy = _a.proxy, scriptUrl = _a.scriptUrl;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const app = express();
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+const atem_connection_1 = require("atem-connection");
+const myAtem = new atem_connection_1.Atem();
+myAtem.connect('192.168.10.240');
+const { proxy, scriptUrl } = require('rtsp-relay')(app);
 // the endpoint our RTSP uses
-app.ws('/api/stream/:cameraIP', function (ws, req) {
-    return proxy({
-        url: "rtsp://".concat(req.params.cameraIP, ":2000/feed"),
-    })(ws);
+app.ws('/api/stream/:cameraIP', (ws, req) => proxy({
+    url: `rtsp://${req.params.cameraIP}:554/live/av0`,
+})(ws));
+app.get('/api/setInput/:input', (req, res) => {
+    myAtem.changeProgramInput(parseInt(req.params.input)).then(value => res.sendStatus(200));
+});
+app.ws('/atem-events', (ws, req) => {
+    myAtem.on('stateChanged', (state) => {
+        ws.send({ event: 'stateChanged', data: state });
+    });
+    /*setInterval(() => {
+        ws.send(JSON.stringify({event:"stateChanged",data:{video:{mixEffects:[{programInput:6,previewInput:[1,5,6,7,8][randomInt(0,5)]}]}}}))
+    }, 5000)*/
 });
 app.listen(4123);
 //# sourceMappingURL=server.js.map

@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:30px
+  gap: 25px;
 }
 
 .App-logo {
@@ -43,14 +43,31 @@
 }
 
 .button{
-  height: 40px;
-  width: 40px;
+  height: 100%;
+  width: 100%;
   border-radius: 5px;
-  border: 1px solid black;
+  border: none;
   cursor: pointer;
   transition: background-color 0.25s;
+  &-row-info{
+    width: 30px;
+  }
+  &-container,&-set{
+    height: auto;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    overflow: hidden;
+  }
   &-set{
     background-color: #ff7171;
+    height: 40px;
+    width:102px;
     &:hover{
       background-color: #ff0000;
     }
@@ -59,30 +76,36 @@
       background-color: #ff7373;
     }
   }
+  &-screenshot{
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: none;
+  }
   &-goto{
+    cursor: pointer;
   }
 
   &-row{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
   }
 
   &-col{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 10px;
   }
   &-group{
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px 10px;
+    padding:  10px;
 
-    gap: 20px;
-    border: 2px #414141 solid;
+    gap: 10px;
+    border: 4px #414141 solid;
     width: fit-content;
   }
   &-video-container{
