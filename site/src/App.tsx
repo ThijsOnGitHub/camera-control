@@ -6,7 +6,7 @@ import {Buttons, EventData} from "./components/Buttons";
 function App() {
     const [lockLive,setLockLive] = React.useState(true)
     const [amountOfPresets,setAmountOfPresets] = React.useState(10)
-    const [delay,setDelay] = React.useState(1500)
+    const [delay,setDelay] = React.useState(1000)
     const [showPreviewVideo,setShowPreviewVideo] = React.useState(true)
 
     // Atemvalues
