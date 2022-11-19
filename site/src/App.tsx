@@ -8,6 +8,7 @@ function App() {
     const [amountOfPresets,setAmountOfPresets] = React.useState(10)
     const [delay,setDelay] = React.useState(1000)
     const [showPreviewVideo,setShowPreviewVideo] = React.useState(true)
+    const [buttonWidth,setButtonWidth] = React.useState(100)
 
     // Atemvalues
     const [liveInput, setLiveInput] = React.useState(0)
@@ -26,7 +27,7 @@ function App() {
     },[])
 
   return (
-    <div className="App">
+    <div style={{"--width-button":buttonWidth+"px"}as any} className="App">
         {[
             {ip: "192.168.1.161", naam: "Cam 1", inputNumber: 5},
             {ip: "192.168.1.162", naam: "Cam 2", inputNumber: 6},
@@ -40,6 +41,7 @@ function App() {
             <label>Aantal presets <input type={"number"} value={amountOfPresets} onChange={event => setAmountOfPresets(event.currentTarget.valueAsNumber)}/></label>
             <label>Delay in ms <input type={"number"} value={delay} onChange={event => setDelay(event.currentTarget.valueAsNumber)}/></label>
             <label>Show preview video <input type={"checkbox"} checked={showPreviewVideo} onChange={event => setShowPreviewVideo(event.currentTarget.checked)}/></label>
+            <label>Grote afbeeldingen <input type={"number"} value={buttonWidth} onChange={event => setButtonWidth(event.currentTarget.valueAsNumber)}/></label>
         </div>
     </div>
   );

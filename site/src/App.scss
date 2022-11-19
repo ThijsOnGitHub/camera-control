@@ -54,7 +54,7 @@
   }
   &-container,&-set{
     height: auto;
-    width: 110px;
+    width: var(--width-button);
     border-radius: 5px;
     border: 1px solid black;
     display: flex;
@@ -67,7 +67,7 @@
   &-set{
     background-color: #ff7171;
     height: 40px;
-    width:112px;
+    width: calc(var(--width-button) + 2px);
     &:hover{
       background-color: #ff0000;
     }
