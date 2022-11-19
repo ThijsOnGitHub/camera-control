@@ -6,6 +6,10 @@ import {Buttons, EventData} from "./components/Buttons";
 function App() {
     const [lockLive,setLockLive] = React.useState(true)
     const [amountOfPresets,setAmountOfPresets] = React.useState(10)
+    const [delay,setDelay] = React.useState(1500)
+    const [showPreviewVideo,setShowPreviewVideo] = React.useState(true)
+
+    // Atemvalues
     const [liveInput, setLiveInput] = React.useState(0)
     const [previewInput, setPreviewInput] = React.useState(0)
     useEffect(()=>{
@@ -30,10 +34,12 @@ function App() {
             {ip: "192.168.1.164", naam: "Cam 4", inputNumber: 8},
             {ip: "192.168.1.165", naam: "Cam 5", inputNumber: 1},
 
-        ].map((item) => <Buttons {...item} amount={amountOfPresets || 10} lockLive={lockLive} liveInput={liveInput} previewInput={previewInput}/>)}
+        ].map((item) => <Buttons {...item} amount={amountOfPresets || 10}  lockLive={lockLive} liveInput={liveInput} previewInput={previewInput} delay={delay} showVideo={showPreviewVideo}/>)}
         <div className={'button-group'}>
             <label>Lock Live <input type={"checkbox"} checked={lockLive} onChange={event => setLockLive(event.currentTarget.checked)}/></label>
             <label>Aantal presets <input type={"number"} value={amountOfPresets} onChange={event => setAmountOfPresets(event.currentTarget.valueAsNumber)}/></label>
+            <label>Delay in ms <input type={"number"} value={delay} onChange={event => setDelay(event.currentTarget.valueAsNumber)}/></label>
+            <label>Show preview video <input type={"checkbox"} checked={showPreviewVideo} onChange={event => setShowPreviewVideo(event.currentTarget.checked)}/></label>
         </div>
     </div>
   );

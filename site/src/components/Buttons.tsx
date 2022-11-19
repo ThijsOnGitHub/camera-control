@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {createRef, useEffect, useRef} from "react";
 import axios from "axios";
 import {LongPressCallback} from "../hooks/LongPressCallback";
 import {ScreenShotFunctie, Stream} from "./Stream";
@@ -22,7 +22,7 @@ function SetToInput(input:number){
 }
 
 export const Repeater: React.FC<{ amount: number, items: (i: number) => React.ReactElement }> = (props) => {
-    return <>{[...new Array(props.amount)].map((_, i) => props.items(i))}
+    return < >{[...new Array(props.amount)].map((_, i) => props.items(i))}
     </>
 }
 
@@ -31,7 +31,7 @@ export type EventData = {
     data: AtemState
 }
 
-export const Buttons: React.FC<{ip:string,naam:string, amount:number, inputNumber:number, liveInput:number, previewInput:number,lockLive:boolean}> = (props) => {
+export const Buttons: React.FC<{ip:string,naam:string, amount:number, inputNumber:number, liveInput:number, previewInput:number,lockLive:boolean, delay:number,showVideo:boolean}> = (props) => {
     const longPress = LongPressCallback((button)=>{
         console.log("Long Press")
         SetPreset(props.ip, parseInt(button.name))
@@ -40,17 +40,23 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number, inputNumbe
     const [canvasRef,setCanvasRef] = React.useState<HTMLCanvasElement|undefined>(undefined)
     const [screenshots, setScreenshots] = React.useState<(string|undefined)[]>([...new Array(props.amount)])
 
+    const testCanvas = createRef<HTMLCanvasElement>()
+
     const isLive = props.liveInput === props.inputNumber
     const isPreview = props.previewInput === props.inputNumber
 
     const takeScreenshot = (preset:number)=>{
-        if(canvasRef){
-            const screenshot = canvasRef.toDataURL('image/png');
-            const newScreenshots = [...screenshots]
-            newScreenshots[preset] = screenshot
-            setScreenshots(newScreenshots)
+        setTimeout(()=>{
+        console.log(canvasRef)
+            if(canvasRef){
+                const screenshot = canvasRef.toDataURL('image/png');
+                const newScreenshots = [...screenshots]
+                newScreenshots[preset] = screenshot
+                setScreenshots(newScreenshots)
+            }
         }
-    }
+        ,props.delay)}
+
 
    return <div className={'button-group'} style={{borderColor:isLive ? "red" : isPreview ? "green" : ""}}>
        <div style={{display:"flex",flexDirection:"column",gap:10, alignItems: "center"}}>
@@ -62,7 +68,7 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number, inputNumbe
             <div className={'button-row'}>
                 <div className={'button-row-info'}>Call</div>
                 <Repeater items={(i) =>
-                    <div className={'button-container button-goto'} style={{cursor:isLive && props.lockLive ?"not-allowed":""}} onClick={()=> props.lockLive && isLive ? "" : CallPreset(props.ip,i) }>
+                    <div  key={i + 1} className={'button-container button-goto'} style={{cursor:isLive && props.lockLive ?"not-allowed":""}} onClick={()=> props.lockLive && isLive ? "" : CallPreset(props.ip,i) }>
                         {screenshots[i] == null ? <div className={'button-screenshot'}></div> : <img src={screenshots[i]} className={'button-screenshot'}></img>}
                         <div>{i + 1}</div>
                     </div>
@@ -80,7 +86,6 @@ export const Buttons: React.FC<{ip:string,naam:string, amount:number, inputNumbe
                 } amount={props.amount}/>
             </div>
         </div>
-
-        <Stream setTakeScreenshot={(canvas)=>setCanvasRef(canvas)} ip={props.ip}/>
+        <Stream showVideo={props.showVideo} setTakeScreenshot={(canvas)=>setCanvasRef(canvas)} ip={props.ip}/>
     </div>
 }
