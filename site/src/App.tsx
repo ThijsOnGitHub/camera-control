@@ -5,10 +5,10 @@ import useLocalStorage from "./hooks/useLocalStorage";
 
 
 function App() {
-    const [lockLive,setLockLive] = React.useState(true)
-    const [amountOfPresets,setAmountOfPresets] = React.useState(10)
-    const [delay,setDelay] = React.useState(1000)
-    const [showPreviewVideo,setShowPreviewVideo] = React.useState(true)
+    const [lockLive,setLockLive] = useLocalStorage('lockLive',true)
+    const [amountOfPresets,setAmountOfPresets] = useLocalStorage('amountOfPresets',10)
+    const [delay,setDelay] =  useLocalStorage('delay',1000)
+    const [showPreviewVideo,setShowPreviewVideo] = useLocalStorage('showPreviewVideo',true)
     const [buttonWidth,setButtonWidth] = useLocalStorage('buttonWidth',100)
 
     // Atemvalues
@@ -38,10 +38,10 @@ function App() {
 
         ].map((item) => <Buttons {...item} amount={amountOfPresets || 10}  lockLive={lockLive} liveInput={liveInput} previewInput={previewInput} delay={delay} showVideo={showPreviewVideo}/>)}
         <div className={'button-group'}>
-            <label>Lock Live <input type={"checkbox"} checked={lockLive} onChange={event => setLockLive(event.currentTarget.checked)}/></label>
-            <label>Aantal presets <input type={"number"} value={amountOfPresets} onChange={event => setAmountOfPresets(event.currentTarget.valueAsNumber)}/></label>
-            <label>Delay in ms <input type={"number"} value={delay} onChange={event => setDelay(event.currentTarget.valueAsNumber)}/></label>
-            <label>Show preview video <input type={"checkbox"} checked={showPreviewVideo} onChange={event => setShowPreviewVideo(event.currentTarget.checked)}/></label>
+            <label>Lock Live: <input type={"checkbox"} checked={lockLive} onChange={event => setLockLive(event.currentTarget.checked)}/></label>
+            <label>Aantal presets: <input type={"number"} value={amountOfPresets} onChange={event => setAmountOfPresets(event.currentTarget.valueAsNumber)}/></label>
+            <label>Vertraging is screenshots: <input type={"number"} value={delay} onChange={event => setDelay(event.currentTarget.valueAsNumber)}/></label>
+            <label>Laat preview tekst zien: <input type={"checkbox"} checked={showPreviewVideo} onChange={event => setShowPreviewVideo(event.currentTarget.checked)}/></label>
             <label>Grote afbeeldingen <input type={"number"} value={buttonWidth} onChange={event => setButtonWidth(event.currentTarget.valueAsNumber)}/></label>
         </div>
     </div>
