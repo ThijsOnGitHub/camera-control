@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.scss';
 import {Buttons, EventData} from "./components/Buttons";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     const [amountOfPresets,setAmountOfPresets] = React.useState(10)
     const [delay,setDelay] = React.useState(1000)
     const [showPreviewVideo,setShowPreviewVideo] = React.useState(true)
-    const [buttonWidth,setButtonWidth] = React.useState(100)
+    const [buttonWidth,setButtonWidth] = useLocalStorage('buttonWidth',100)
 
     // Atemvalues
     const [liveInput, setLiveInput] = React.useState(0)
